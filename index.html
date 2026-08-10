@@ -237,6 +237,15 @@
       max-width: 34rem;
     }
 
+    /* The build identifier. Small and dim: it is a diagnostic the owner should be
+       able to read on request, not a thing competing with the loading state. */
+    #spin-build {
+      font-size: 0.72rem;
+      opacity: 0.55;
+      letter-spacing: 0.04em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
     .spin-line.ar {
       font-size: 0.9rem;
       opacity: 0.8;
@@ -290,11 +299,24 @@
     <p class="spin-line ar" id="spin-status-ar" dir="rtl" lang="ar">جارٍ التحميل…</p>
     <p class="spin-line" id="spin-hint" hidden></p>
     <pre id="spin-detail" hidden></pre>
+
+    <!--
+      The build identifier, and it exists to answer ONE question the owner cannot
+      otherwise answer from a phone: *am I looking at the build you just deployed,
+      or at the one Safari cached?*
+
+      ⚠️ It is NOT a Godot placeholder. `scripts/deploy_playtest.ps1` substitutes
+      `6c4069f-20260811-0005` after the export, so the token survives `test_web_shell.gd`'s
+      placeholder check (which is about `$GODOT_*` and would fail on a deleted one)
+      and a local build simply shows the token unchanged — which is itself
+      informative: a page reading "6c4069f-20260811-0005" was not deployed by the script.
+    -->
+    <p class="spin-line" id="spin-build">build 6c4069f-20260811-0005</p>
   </div>
 
   <script src="index.js"></script>
   <script>
-    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":26240464,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=6c4069f-20260811-0005","experimentalVK":false,"fileSizes":{"index.pck?v=6c4069f-20260811-0005":26259420,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const GODOT_THREADS_ENABLED = false;
 
     (function () {
