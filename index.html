@@ -306,19 +306,19 @@
       or at the one Safari cached?*
 
       ⚠️ It is NOT a Godot placeholder. `scripts/deploy_playtest.ps1` substitutes
-      `5be3953-20260814-0447` after the export, so the token survives `test_web_shell.gd`'s
+      `0810aac-20260814-1204` after the export, so the token survives `test_web_shell.gd`'s
       placeholder check (which is about `$GODOT_*` and would fail on a deleted one)
       and a local build simply shows the token unchanged — which is itself
-      informative: a page reading "5be3953-20260814-0447" was not deployed by the script.
+      informative: a page reading "0810aac-20260814-1204" was not deployed by the script.
     -->
-    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; 5be3953-20260814-0447</p>
+    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; 0810aac-20260814-1204</p>
   </div>
 
   <!--
     The build identity, exposed to the GAME as well as to this boot screen.
 
     `scripts/deploy_playtest.ps1` substitutes every occurrence of the
-    `5be3953-20260814-0447` token after the export, so this global carries the real id
+    `0810aac-20260814-1204` token after the export, so this global carries the real id
     into GDScript through `JavaScriptBridge`. Without it the engine has no way
     to know which build it is: the id is created at deploy time, minutes after
     the pack was written.
@@ -329,21 +329,21 @@
   <script>
     // ⚠️ The global is deliberately NOT named after the token.
     //
-    // `deploy_playtest.ps1` replaces EVERY occurrence of `5be3953-20260814-0447` in this
-    // page, so writing `window.5be3953-20260814-0447 = "5be3953-20260814-0447"` rewrote the
+    // `deploy_playtest.ps1` replaces EVERY occurrence of `0810aac-20260814-1204` in this
+    // page, so writing `window.0810aac-20260814-1204 = "0810aac-20260814-1204"` rewrote the
     // property name as well as the value and produced
     // `window.03d22bc-... = "03d22bc-..."` — a syntax error that killed the
     // whole script, left the game reading "local", and was invisible until the
     // deployed page was actually opened.
     //
     // The token must appear exactly once here, inside the string.
-    window.spinBuild = "5be3953-20260814-0447";
+    window.spinBuild = "0810aac-20260814-1204";
     window.spinAgent = "CLAUDE_CODE";
   </script>
 
   <script src="index.js"></script>
   <script>
-    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=5be3953-20260814-0447","experimentalVK":false,"fileSizes":{"index.pck?v=5be3953-20260814-0447":926488,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=0810aac-20260814-1204","experimentalVK":false,"fileSizes":{"index.pck?v=0810aac-20260814-1204":930696,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const GODOT_THREADS_ENABLED = false;
 
     (function () {
