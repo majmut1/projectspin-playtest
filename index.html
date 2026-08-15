@@ -4,7 +4,7 @@
   <meta charset="utf-8">
 
   <!--
-    CROWN//BREAK — custom mobile web shell. (Carried over from the archived
+    UPRUSH — custom mobile web shell. (Carried over from the archived
     Project Spin build: the shell is infrastructure, not product identity.)
 
     ⚠️ THIS FILE IS A GODOT EXPORT TEMPLATE, NOT A PAGE.
@@ -64,7 +64,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <title>ECHO RIVALS</title>
+  <title>UPRUSH</title>
 
   <style>
     /*
@@ -294,7 +294,7 @@
   <div id="spin-safe-area-probe" aria-hidden="true"></div>
 
   <div id="spin-boot" role="status" aria-live="polite">
-    <h1 id="spin-title">ECHO RIVALS</h1>
+    <h1 id="spin-title">UPRUSH</h1>
     <div id="spin-track" class="indeterminate"><span id="spin-fill"></span></div>
     <p class="spin-line" id="spin-status">Loading…</p>
     <p class="spin-line ar" id="spin-status-ar" dir="rtl" lang="ar">جارٍ التحميل…</p>
@@ -307,19 +307,19 @@
       or at the one Safari cached?*
 
       ⚠️ It is NOT a Godot placeholder. `scripts/deploy_playtest.ps1` substitutes
-      `04d2479-20260815-1353` after the export, so the token survives `test_web_shell.gd`'s
+      `b79b04e-20260815-2325` after the export, so the token survives `test_web_shell.gd`'s
       placeholder check (which is about `$GODOT_*` and would fail on a deleted one)
       and a local build simply shows the token unchanged — which is itself
-      informative: a page reading "04d2479-20260815-1353" was not deployed by the script.
+      informative: a page reading "b79b04e-20260815-2325" was not deployed by the script.
     -->
-    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; CROWN//BREAK &bull; 04d2479-20260815-1353</p>
+    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; UPRUSH &bull; b79b04e-20260815-2325</p>
   </div>
 
   <!--
     The build identity, exposed to the GAME as well as to this boot screen.
 
     `scripts/deploy_playtest.ps1` substitutes every occurrence of the
-    `04d2479-20260815-1353` token after the export, so this global carries the real id
+    `b79b04e-20260815-2325` token after the export, so this global carries the real id
     into GDScript through `JavaScriptBridge`. Without it the engine has no way
     to know which build it is: the id is created at deploy time, minutes after
     the pack was written.
@@ -330,21 +330,21 @@
   <script>
     // ⚠️ The global is deliberately NOT named after the token.
     //
-    // `deploy_playtest.ps1` replaces EVERY occurrence of `04d2479-20260815-1353` in this
-    // page, so writing `window.04d2479-20260815-1353 = "04d2479-20260815-1353"` rewrote the
+    // `deploy_playtest.ps1` replaces EVERY occurrence of `b79b04e-20260815-2325` in this
+    // page, so writing `window.b79b04e-20260815-2325 = "b79b04e-20260815-2325"` rewrote the
     // property name as well as the value and produced
     // `window.03d22bc-... = "03d22bc-..."` — a syntax error that killed the
     // whole script, left the game reading "local", and was invisible until the
     // deployed page was actually opened.
     //
     // The token must appear exactly once here, inside the string.
-    window.spinBuild = "04d2479-20260815-1353";
+    window.spinBuild = "b79b04e-20260815-2325";
     window.spinAgent = "CLAUDE_CODE";
   </script>
 
   <script src="index.js"></script>
   <script>
-    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=04d2479-20260815-1353","experimentalVK":false,"fileSizes":{"index.pck?v=04d2479-20260815-1353":1047384,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=b79b04e-20260815-2325","experimentalVK":false,"fileSizes":{"index.pck?v=b79b04e-20260815-2325":1117684,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const GODOT_THREADS_ENABLED = false;
 
     (function () {
@@ -460,8 +460,8 @@
         boot.hidden = false;
         track.hidden = true;
         setLines(
-          'This browser cannot run CROWN//BREAK.',
-          'هذا المتصفح لا يستطيع تشغيل CROWN//BREAK.'
+          'This browser cannot run UPRUSH.',
+          'هذا المتصفح لا يستطيع تشغيل UPRUSH.'
         );
         hint.textContent =
           'Try the newest Safari or Chrome, and make sure the page is served over ' +
@@ -476,8 +476,8 @@
         boot.hidden = false;
         track.hidden = true;
         setLines(
-          'CROWN//BREAK could not start.',
-          'تعذّر بدء تشغيل CROWN//BREAK.'
+          'UPRUSH could not start.',
+          'تعذّر بدء تشغيل UPRUSH.'
         );
         hint.textContent = 'Reload the page to try again. — أعد تحميل الصفحة للمحاولة مرة أخرى.';
         hint.hidden = false;
