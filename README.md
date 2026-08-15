@@ -1,7 +1,7 @@
-# Project Spin — Beta 1 playtest build
+# CROWN//BREAK — vertical slice
 
-A hosted build of an in-development game, published so the owner can open it on a
-phone. **This repository holds no source code** — only the compiled Web export.
+A hosted build of an in-development game, published so the owner can open it on
+a phone. **This repository holds no source code** — only the compiled Web export.
 
 **▶ Play: <https://majmut1.github.io/projectspin-playtest/>**
 
@@ -9,21 +9,24 @@ phone. **This repository holds no source code** — only the compiled Web export
 
 ## What it is
 
-Arcade table tennis. One local match against a bot: first to 7, no win-by-two.
+A 4-player kinetic possession brawler for portrait mobile. You plus three bots.
 
 | | |
 |---|---|
-| **Move the bat** | Drag anywhere on the screen, or move the mouse. The bat moves *with* your finger — it does not jump to it. |
-| **Serve** | **Flick upward.** Wait ten seconds and the game serves for you. |
-| **Aim** | Where the ball meets the bat decides where it lands. Low on the bat sends it deep, high sends it short, off to one side sends it that way. |
-| **⚠️ If the ball is going out, let it go** | Hitting it before it bounces on your side loses you a point that was already yours. |
+| **Move** | Drag anywhere. The body steers toward your finger — there is no on-screen stick. |
+| **Dash** | **Flick** fast in a direction. A dash commits: miss and you are briefly helpless. |
+| **Take the Crown** | Touch it. Holding it fills your meter — the ring closing around the arena floor. |
+| **Break the holder** | Dash into them at speed. The Crown pops loose and everyone scrambles. |
+| **Counter** | Dash as an attacker commits and you deflect them instead. |
+
+First to 20 cumulative seconds of possession wins.
 
 ## Build
 
 Godot 4.7.1, `Web NoThreads` preset. The non-threaded variant is used because
 GitHub Pages cannot send `Cross-Origin-Opener-Policy` / `Cross-Origin-Embedder-Policy`,
-which a threaded build needs for `SharedArrayBuffer`. The game itself is identical
-— the `.pck` is byte-for-byte the same as the threaded build.
+which a threaded build needs for `SharedArrayBuffer`.
 
-Development happens in a separate private repository. This one is regenerated
-from it and carries no history worth reading.
+Development happens in a separate private repository. The previous project,
+Project Spin, is preserved on the `archive/project-spin` branch of both
+repositories.
