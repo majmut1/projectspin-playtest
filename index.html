@@ -307,19 +307,19 @@
       or at the one Safari cached?*
 
       ⚠️ It is NOT a Godot placeholder. `scripts/deploy_playtest.ps1` substitutes
-      `b79b04e-20260815-2325` after the export, so the token survives `test_web_shell.gd`'s
+      `4d1e03d-20260817-2146` after the export, so the token survives `test_web_shell.gd`'s
       placeholder check (which is about `$GODOT_*` and would fail on a deleted one)
       and a local build simply shows the token unchanged — which is itself
-      informative: a page reading "b79b04e-20260815-2325" was not deployed by the script.
+      informative: a page reading "4d1e03d-20260817-2146" was not deployed by the script.
     -->
-    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; UPRUSH &bull; b79b04e-20260815-2325</p>
+    <p class="spin-line" id="spin-build">CLAUDE_CODE &bull; UPRUSH &bull; 4d1e03d-20260817-2146</p>
   </div>
 
   <!--
     The build identity, exposed to the GAME as well as to this boot screen.
 
     `scripts/deploy_playtest.ps1` substitutes every occurrence of the
-    `b79b04e-20260815-2325` token after the export, so this global carries the real id
+    `4d1e03d-20260817-2146` token after the export, so this global carries the real id
     into GDScript through `JavaScriptBridge`. Without it the engine has no way
     to know which build it is: the id is created at deploy time, minutes after
     the pack was written.
@@ -330,21 +330,68 @@
   <script>
     // ⚠️ The global is deliberately NOT named after the token.
     //
-    // `deploy_playtest.ps1` replaces EVERY occurrence of `b79b04e-20260815-2325` in this
-    // page, so writing `window.b79b04e-20260815-2325 = "b79b04e-20260815-2325"` rewrote the
+    // `deploy_playtest.ps1` replaces EVERY occurrence of `4d1e03d-20260817-2146` in this
+    // page, so writing `window.4d1e03d-20260817-2146 = "4d1e03d-20260817-2146"` rewrote the
     // property name as well as the value and produced
     // `window.03d22bc-... = "03d22bc-..."` — a syntax error that killed the
     // whole script, left the game reading "local", and was invisible until the
     // deployed page was actually opened.
     //
     // The token must appear exactly once here, inside the string.
-    window.spinBuild = "b79b04e-20260815-2325";
+    window.spinBuild = "4d1e03d-20260817-2146";
+
+    // --- iOS AUDIO: the ring switch ----------------------------------------
+    //
+    // The first human iPhone test recorded digital silence. The leading
+    // explanation is not a bug in the game: on iOS, Safari plays WebAudio
+    // through the "ambient" session, which the hardware ring/silent switch
+    // mutes outright. Nothing engine-side can see it — every check reports a
+    // healthy audio path while the device outputs nothing at all.
+    //
+    // `navigator.audioSession` (Safari 16.4+) is the one lever the platform
+    // offers: declaring the page as "playback" takes it out from under the
+    // switch. Set as early as possible, and harmless where unsupported.
+    try {
+      if (navigator.audioSession) { navigator.audioSession.type = "playback"; }
+    } catch (e) { /* older Safari: the switch wins, and we report that */ }
+
+    // Reports the live AudioContext state to the in-game diagnostic overlay,
+    // so the next test produces evidence rather than another guess.
+    //
+    // ⚠️ The probe context is RESUMED on the first real gesture, exactly as the
+    // engine's own context is. A probe that is merely constructed and never
+    // resumed always reads "suspended", which looks like a fault and is not
+    // one — reporting that would have sent the next investigation the wrong
+    // way. What this can prove is whether WebAudio runs on the device at all.
+    // What it cannot prove, on any device, is whether a human heard anything.
+    (function () {
+      var C = window.AudioContext || window.webkitAudioContext;
+      if (!C) { window.__uprushAudio = "no-webaudio"; return; }
+      var ctx = null;
+      var start = function () {
+        try {
+          if (!ctx) { ctx = new C(); }
+          if (ctx.state === "suspended") { ctx.resume(); }
+        } catch (e) { window.__uprushAudioErr = String(e); }
+      };
+      ["pointerdown", "touchend", "keydown"].forEach(function (n) {
+        window.addEventListener(n, start, { capture: true, once: false });
+      });
+      window.__uprushAudioState = function () {
+        try {
+          var st = ctx ? ctx.state : "not-started";
+          var sess = (navigator.audioSession && navigator.audioSession.type) ||
+            "unsupported";
+          return st + "/" + sess + (window.__uprushAudioErr ? "/ERR" : "");
+        } catch (e) { return "error"; }
+      };
+    })();
     window.spinAgent = "CLAUDE_CODE";
   </script>
 
   <script src="index.js"></script>
   <script>
-    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=b79b04e-20260815-2325","experimentalVK":false,"fileSizes":{"index.pck?v=b79b04e-20260815-2325":1117684,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","mainPack":"index.pck?v=4d1e03d-20260817-2146","experimentalVK":false,"fileSizes":{"index.pck?v=4d1e03d-20260817-2146":1132676,"index.wasm":39513091},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const GODOT_THREADS_ENABLED = false;
 
     (function () {
